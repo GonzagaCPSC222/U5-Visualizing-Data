@@ -30,6 +30,15 @@ def line_chart_example(x_ser, y_ser, y2_ser):
     plt.savefig("line_example.png")
     # 3. inline inside a jupyter notebook (stay tuned...)
 
+def scatter_chart_example(x_ser, y_ser):
+    plt.figure() # to create a new "current" figure
+    plt.scatter(x_ser, y_ser, color="red", marker="x", s=200)
+    plt.savefig("scatter_example.png")
+
+def bar_chart_example(x_ser, y_ser):
+    plt.figure() # to create a new "current" figure
+    plt.bar(x_ser, y_ser)
+    plt.savefig("bar_example.png")
 
 def main():
     df =  pd.read_csv("bball.csv", index_col=0)
@@ -85,7 +94,20 @@ def main():
     # and PTS on the y-axis
     # note: line chart is not the best way to display
     # continuous data (PTS) grouped by discrete values (players)
+    print(df.columns)
     line_chart_example(df.index, df["PTS"], df["MIN"])
-    
+    # different chart types
+    # 1. scatter
+    scatter_chart_example(df.index, df["PTS"])
+    # 2. bar
+    # task: call bar_chart_example twice
+    # A. pts per player data
+    # B. count of each class (Sr, Jr, ...)
+    # bar_chart_example(df.index, df["PTS"])
+    bar_chart_example(class_counts_ser.index, class_counts_ser)
+
+    # 3. pie 
+    # 4. histogram
+    # 5. (later) box plot
 
 main()
