@@ -40,6 +40,16 @@ def bar_chart_example(x_ser, y_ser):
     plt.bar(x_ser, y_ser)
     plt.savefig("bar_example.png")
 
+def pie_chart_example(x_ser, y_ser):
+    plt.figure() # to create a new "current" figure
+    plt.pie(y_ser, labels=x_ser, autopct="%.2f%%")
+    plt.savefig("pie_example.png")
+
+def histogram_chart_example(x_ser):
+    plt.figure() # to create a new "current" figure
+    plt.hist(x_ser, bins=5) # default is 10 bins
+    plt.savefig("histogram_example.png")
+
 def main():
     df =  pd.read_csv("bball.csv", index_col=0)
     print(df)
@@ -104,10 +114,18 @@ def main():
     # A. pts per player data
     # B. count of each class (Sr, Jr, ...)
     # bar_chart_example(df.index, df["PTS"])
+    plt.xkcd()
     bar_chart_example(class_counts_ser.index, class_counts_ser)
 
     # 3. pie 
+    pie_chart_example(class_counts_ser.index, class_counts_ser)
+    
     # 4. histogram
+    # showing the distribution of a numeric attribute
+    # by showing the counts of values for "bins" number of 
+    # equal width bins
+    histogram_chart_example(df["MIN"])
+
     # 5. (later) box plot
 
 main()
