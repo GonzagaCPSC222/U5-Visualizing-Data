@@ -26,11 +26,12 @@ import matplotlib.pyplot as plt
 # 3. a mix of the first two
 
 # lets start with a simple line chart
-def line_chart_example(x, y, filename):
+def line_chart_example(x, y, y2, filename):
     # x and y are "sequences"
     # lists, series, numpy arrays, etc.
     # they are parallel
-    plt.plot(x, y)
+    plt.plot(x, y, label="PTS")
+    plt.plot(x, y2, label="MIN")
 
     # lets beautify the plot
     plt.xticks(rotation=45, ha="right")
@@ -38,6 +39,7 @@ def line_chart_example(x, y, filename):
     plt.ylabel("Season Point Total")
     plt.title("21/22 GU Men's Basketball")
     plt.grid()
+    plt.legend()
 
     plt.tight_layout() # call right before plt.show() or plt.savefig()
 
@@ -78,6 +80,6 @@ def main():
 
     # task: add another line to our chart 
     # for "MIN"
-    line_chart_example(df.index, df["PTS"], "line_example.png")
+    line_chart_example(df.index, df["PTS"], df["MIN"], "line_example.png")
 
 main()
