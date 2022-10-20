@@ -30,7 +30,7 @@ def line_chart_example(x, y, y2, filename):
     # x and y are "sequences"
     # lists, series, numpy arrays, etc.
     # they are parallel
-    plt.plot(x, y, label="PTS")
+    plt.plot(x, y, label="PTS", color="purple", lw=5)
     plt.plot(x, y2, label="MIN")
 
     # lets beautify the plot
@@ -51,6 +51,26 @@ def line_chart_example(x, y, y2, filename):
     # 3. inline inside of a jupyter notebook
     # (more on this later)
 
+def scatter_chart_example(x, y, filename):
+    plt.figure() # creates a new *current figure*
+    plt.scatter(x, y, s=200, marker="x")
+    plt.savefig(filename)
+
+def bar_chart_example(x, y, filename):
+    plt.figure() # creates a new *current figure*
+    plt.bar(x, y, facecolor="red", edgecolor="blue", lw=5)
+    plt.savefig(filename)
+
+def pie_chart_example(labels, values, filename):
+    plt.figure() # creates a new *current figure*
+    plt.pie(values, labels=labels, autopct="%1.1f%%")
+    plt.savefig(filename)
+
+def histogram_chart_example(values, filename):
+    plt.figure() # creates a new *current figure*
+    # default number of bins is 10
+    plt.hist(values, bins=5, edgecolor="black")
+    plt.savefig(filename)
 
 def main():
     df = pd.read_csv("bball.csv", index_col=0)
@@ -81,5 +101,18 @@ def main():
     # task: add another line to our chart 
     # for "MIN"
     line_chart_example(df.index, df["PTS"], df["MIN"], "line_example.png")
+    # game plan
+    # 1. line (check)
+    # 2. scatter
+    scatter_chart_example(df.index, df["PTS"], "scatter_example.png")
+    # 3. bar 
+    # bar_chart_example(df.index, df["PTS"], "bar_example.png")
+    bar_chart_example(class_counts_ser.index, class_counts_ser, "bar_example.png")
+    # 4. pie 
+    # (great for showing parts of a whole)
+    pie_chart_example(class_counts_ser.index, class_counts_ser, "pie_example.png")
+    # 5. histogram
+    histogram_chart_example(df["PTS"], "histogram_example.png")
+    # 6. (later) boxplots
 
 main()
