@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 # 3. a mix of the two
 
 # lets start with a simple line chart
-def line_chart_example(x, y):
+def line_chart_example(x, y, filename):
     # assume that x and y are parallel sequences
     # lists, tuples, series, numpy arrays, etc.
     plt.plot(x, y)
@@ -32,7 +32,7 @@ def line_chart_example(x, y):
     # 1. plt.show() shows an interactive desktop window
     # plt.show()
     # 2. plt.savefig()
-    plt.savefig("line_example.png")
+    plt.savefig(filename)
 
 
 def main():
@@ -62,6 +62,6 @@ def main():
 
     # simple charting examples for demonstration purposes only
     # (not the best way to visualize some of the data)
-    line_chart_example(df.index, df["PTS"])
+    line_chart_example(df.index, df["PTS"], "line_example.png")
 
 main()
